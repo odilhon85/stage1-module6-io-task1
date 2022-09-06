@@ -37,25 +37,22 @@ public class FileReader {
                 int spaceIndex = key.indexOf(" ");
                 String keyName = key.substring(0, spaceIndex + 1);
                 String keyValue = key.substring(spaceIndex);
-                if (keyName.contains("Name")) {
-                    name = keyValue.trim();
-                    key = new StringBuilder();
-                }
-                if (keyName.contains("Age")) {
-                    age = Integer.parseInt(keyValue.trim());
-                    key = new StringBuilder();
-                }
-                if (keyName.contains("Email")) {
-                    email = keyValue.trim();
-                    key = new StringBuilder();
-                }
-                if (keyName.contains("Phone")) {
-                    phone = Long.parseLong(keyValue.trim());
-                    key = new StringBuilder();
-                }
-
+                setValues(keyName, keyValue);
+                key = new StringBuilder();
             }
 
+        }
+    }
+
+    public void setValues(String keyName, String keyValue){
+        if (keyName.contains("Name")) {
+            name = keyValue.trim();
+        }else if (keyName.contains("Age")) {
+            age = Integer.parseInt(keyValue.trim());
+        }else if (keyName.contains("Email")) {
+            email = keyValue.trim();
+        }else if (keyName.contains("Phone")) {
+            phone = Long.parseLong(keyValue.trim());
         }
     }
 }
