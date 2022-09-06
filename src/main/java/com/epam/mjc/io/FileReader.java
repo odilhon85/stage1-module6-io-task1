@@ -1,9 +1,6 @@
 package com.epam.mjc.io;
 
-import jdk.jfr.StackTrace;
-
 import java.io.*;
-
 
 public class FileReader {
 
