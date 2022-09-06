@@ -11,8 +11,13 @@ public class FileReader {
 
 
     public Profile getDataFromFile(File file) {
+        char[] dataBuffer = readFile(file);
+        findValues(dataBuffer);
+        return new Profile(name, age, email, phone);
+    }
+
+    public char[] readFile(File file){
         char[] dataBuffer = null;
-        StringBuilder key = new StringBuilder();
         try (InputStream input = new FileInputStream(file);
              InputStreamReader inputReader = new InputStreamReader(input);) {
             int fileSize = input.available();
@@ -21,7 +26,11 @@ public class FileReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return dataBuffer;
+    }
 
+    public void findValues(char[] dataBuffer){
+        StringBuilder key = new StringBuilder();
         for (int i = 0; i < dataBuffer.length; i++) {
             key.append(dataBuffer[i]);
             if (dataBuffer[i] == '\n' || dataBuffer[i] == dataBuffer.length - 1) {
@@ -46,8 +55,7 @@ public class FileReader {
                 }
 
             }
-        }
 
-        return new Profile(name, age, email, phone);
+        }
     }
 }
